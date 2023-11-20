@@ -15,3 +15,6 @@ realize promise
     - .catch 是 .then 第二个参数的简便写法，但是它们用法上有一点需要注意：
     - .then 的第二个处理错误的函数捕获不了第一个处理成功的函数抛出的错误，
     - 而后续的 .catch 可以捕获之前的错误
+
+
+[实现promise](https://juejin.cn/post/7259647015604863013?searchId=20231120111637040FBFD503DF39CE06F8)

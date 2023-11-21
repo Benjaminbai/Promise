@@ -124,4 +124,39 @@ class RewritePromise {
             reject(result)
         })
     }
+
+    static all(promises) {
+        let [result, count] = [[], 0]
+        return new PromiseOwn((resolve, reject) => {
+            for (let i = 0; i < promises.length; i++) {
+                promises[i].then(
+                    (res) => {
+                        result[i] = res
+                        count++
+                        if (count === promises.length) {
+                            resolve(result)
+                        }
+                    },
+                    (reason) => {
+                        reject(reason)
+                    }
+                )
+            }
+        })
+    }
+
+    static race(promises) {
+        return new PromiseOwn((resolve, reject) => {
+            for (let i = 0; i < promises.length; i++) {
+                promises[i].then(
+                    (res) => {
+                        resolve(res)
+                    },
+                    (reason) => {
+                        reject(reason)
+                    }
+                )
+            }
+        })
+    }
 }
